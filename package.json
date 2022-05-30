@@ -1,0 +1,32 @@
+{
+  "name": "companies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "local": "nodemon server.js",
+    "start": "node server.js",
+    "standard": "standard",
+    "standard-fix": "standard --fix"
+  },
+  "keywords": [],
+  "author": "Carlos Daniel Londoño Avila",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdlavila/Companies.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cdlavila/Companies/issues"
+  },
+  "homepage": "https://github.com/cdlavila/Companies#readme",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.2",
+    "dotenv": "^16.0.1",
+    "mongoose": "^6.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "standard": "^17.0.0"
+  }
+}
