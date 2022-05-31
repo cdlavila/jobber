@@ -6,14 +6,14 @@ module.exports = [
     method: 'GET',
     path: '/',
     handler: (request, h) => {
-      return 'Welcome to the Companies server'
+      return h.response({ message: 'Welcome to the Companies server' }).code(200)
     }
   },
   {
     method: 'GET',
     path: `/api/${process.env.API_VERSION}`,
     handler: (request, h) => {
-      return `Welcome to the Companies API ${process.env.API_VERSION}`
+      return h.response({ message: `Welcome to the Companies API ${process.env.API_VERSION}` }).code(200)
     }
   },
   ...CompanyRoutes.map((route) => {

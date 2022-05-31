@@ -22,8 +22,10 @@
   "homepage": "https://github.com/cdlavila/Companies#readme",
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
+    "dayjs": "^1.11.2",
     "dotenv": "^16.0.1",
-    "mongoose": "^6.3.4"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.16",
