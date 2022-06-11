@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const CompanySchema = new Schema({
-  name: {
+const JobSchema = new Schema({
+  title: {
     type: String,
     required: true
   },
@@ -10,14 +10,13 @@ const CompanySchema = new Schema({
     type: String,
     required: true
   },
-  address: {
-    type: String,
-    required: true
+  company: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'Company'
   }
-}, {
-  versionKey: false
 })
 
-const model = mongoose.model('Company', companySchema)
+const model = mongoose.model('Job', JobSchema)
 
 module.exports = model
