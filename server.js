@@ -1,5 +1,5 @@
 const Hapi = require('@hapi/hapi')
-const database = require('./src/database')
+const mongoosePlugin = require('./src/plugins/mongoose')
 const routes = require('./src/routes/index')
 require('dotenv').config()
 
@@ -9,10 +9,10 @@ const init = async () => {
     host: process.env.HOST || 'localhost'
   })
 
+  await server.register(mongoosePlugin)
   server.route(routes)
-  await server.start()
+  server.start()
   console.log('Server running on %s', server.info.uri)
-  await database.connect()
 }
 
 process.on('unhandledRejection', (err) => {
