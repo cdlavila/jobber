@@ -16,21 +16,33 @@ module.exports = {
     {
       method: 'GET',
       path: '',
+      options: {
+        auth: 'admin-authentication'
+      },
       handler: UserController.getAll
     },
     {
       method: 'GET',
       path: '/{id}',
+      options: {
+        auth: 'authentication'
+      },
       handler: UserController.getById
     },
     {
       method: 'PUT',
       path: '/{id}',
+      options: {
+        auth: 'authentication'
+      },
       handler: UserController.update
     },
     {
       method: 'DELETE',
       path: '/{id}',
+      options: {
+        auth: 'authentication'
+      },
       handler: UserController.delete
     }
   ]

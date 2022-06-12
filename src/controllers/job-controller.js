@@ -1,5 +1,5 @@
-const StatusCode = require('../network/status-code')
-const Response = require('../network/response')
+const StatusCode = require('../helpers/status-code')
+const Response = require('../helpers/response')
 const JobRepository = require('../repositories/job-repository')
 
 class JobController {

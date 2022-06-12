@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt')
 
-const StatusCode = require('../network/status-code')
-const Response = require('../network/response')
-const Token = require('../network/token')
+const StatusCode = require('../helpers/status-code')
+const Response = require('../helpers/response')
+const Token = require('../helpers/token')
 const UserRepository = require('../repositories/user-repository')
 
 class UserController {
@@ -28,7 +28,7 @@ class UserController {
         return Response.error(h, StatusCode?.NOT_AUTHORIZED, 'Email and password do not match')
       }
       // Generate a token to the session
-      const token = Token.generate(user?.id, 'User')
+      const token = Token.generate(user?.id, user?.role)
       return Response.success(h, StatusCode?.OK, { user, token }, 'User authenticated successfully')
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)

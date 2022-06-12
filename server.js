@@ -1,8 +1,10 @@
+require('dotenv').config()
 const Hapi = require('@hapi/hapi')
 const mongoosePlugin = require('./src/plugins/mongoose')
-const checkAuthenticationPlugin = require('./src/plugins/check-authentication')
+const authenticationPlugin = require('./src/plugins/authentication')
+const adminAuthenticationPlugin = require('./src/plugins/admin-authentication')
+const candidateAuthenticationPlugin = require('./src/plugins/candidate-authentication')
 const routes = require('./src/routes/index')
-require('dotenv').config()
 
 const init = async () => {
   const server = Hapi.server({
@@ -11,7 +13,9 @@ const init = async () => {
   })
 
   await server.register(mongoosePlugin)
-  await server.register(checkAuthenticationPlugin)
+  await server.register(authenticationPlugin)
+  await server.register(adminAuthenticationPlugin)
+  await server.register(candidateAuthenticationPlugin)
   server.route(routes)
   server.start()
   console.log('Server running on %s', server.info.uri)
