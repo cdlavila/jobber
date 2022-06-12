@@ -5,12 +5,16 @@ class Repository {
     return createdData
   }
 
-  async getAll (filters = {}) {
-    return this.model.find(filters)
+  async getAll (query = {}, population = null) {
+    return population ? this.model.find(query).populate(population) : this.model.find(query)
   }
 
   async getById (id) {
     return this.model.findById(id)
+  }
+
+  async getOne (query) {
+    return this.model.findOne(query)
   }
 
   async update (id, data) {

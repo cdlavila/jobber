@@ -10,6 +10,14 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  birth_date: {
+    type: Date,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -18,7 +26,14 @@ const UserSchema = new Schema({
   },
   password:{
     type: String,
-    required:true
+    required:true,
+    set: function(value) {
+      return require('bcrypt').hashSync(value, 12)
+    }
+  },
+  role: {
+    type: String,
+    required: true
   }
 })
 

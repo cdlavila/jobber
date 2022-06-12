@@ -22,6 +22,7 @@
   "homepage": "https://github.com/cdlavila/Companies#readme",
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
+    "bcrypt": "^5.0.1",
     "dayjs": "^1.11.2",
     "dotenv": "^16.0.1",
     "jsonwebtoken": "^8.5.1",

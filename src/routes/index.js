@@ -1,5 +1,8 @@
 require('dotenv').config()
 const { path: CompanyPath, routes: CompanyRoutes } = require('./api/company-router')
+const { path: JobPath, routes: JobRoutes } = require('./api/job-router')
+const { path: UserPath, routes: UserRoutes } = require('./api/user-router')
+const { path: ApplicationPath, routes: ApplicationRoutes } = require('./api/application-router')
 
 module.exports = [
   {
@@ -18,5 +21,14 @@ module.exports = [
   },
   ...CompanyRoutes.map((route) => {
     return { ...route, path: `/api/${process.env.API_VERSION}/${CompanyPath}${route.path}` }
+  }),
+  ...JobRoutes.map((route) => {
+    return { ...route, path: `/api/${process.env.API_VERSION}/${JobPath}${route.path}` }
+  }),
+  ...UserRoutes.map((route) => {
+    return { ...route, path: `/api/${process.env.API_VERSION}/${UserPath}${route.path}` }
+  }),
+  ...ApplicationRoutes.map((route) => {
+    return { ...route, path: `/api/${process.env.API_VERSION}/${ApplicationPath}${route.path}` }
   })
 ]
