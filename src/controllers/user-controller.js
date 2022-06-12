@@ -9,7 +9,7 @@ class UserController {
   static async signUp (request, h) {
     try {
       const userRepository = new UserRepository()
-      const user = await userRepository.create({ ...request?.payload, role: 'user' })
+      const user = await userRepository.create({ ...request?.payload, role: 'Candidate' })
       return Response.success(h, StatusCode?.CREATED, user, 'User created successfully')
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
@@ -38,7 +38,7 @@ class UserController {
   static async getAll (request, h) {
     try {
       const userRepository = new UserRepository()
-      const users = await userRepository.getAll()
+      const users = await userRepository.getAll({}, 'company')
       return Response.success(h, StatusCode?.OK, users, 'Users list')
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
@@ -48,7 +48,7 @@ class UserController {
   static async getById (request, h) {
     try {
       const userRepository = new UserRepository()
-      const user = await userRepository.getById(request?.params?.id)
+      const user = await userRepository.getById(request?.params?.id, 'company')
       if (!user) { return Response.error(h, StatusCode?.NOT_FOUND, 'User not found') }
       return Response.success(h, StatusCode?.OK, user, `User of id ${request?.params?.id}`)
     } catch (error) {

@@ -9,8 +9,8 @@ class Repository {
     return population ? this.Model.find(query).populate(population) : this.Model.find(query)
   }
 
-  async getById (id) {
-    return this.Model.findById(id)
+  async getById (id, population = null) {
+    return population ? this.Model.findById(id).populate(population) : this.Model.findById(id)
   }
 
   async getOne (query) {

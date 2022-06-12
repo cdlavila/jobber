@@ -16,7 +16,8 @@ const UserSchema = new Schema({
   },
   phone: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   email: {
     type: String,
@@ -33,7 +34,13 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
-    required: true
+    required: false,
+    default: 'Candidate'
+  },
+  company: {
+    type: Schema.Types.ObjectId,
+    required: false,
+    ref: 'Company'
   }
 })
 
