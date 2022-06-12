@@ -24,10 +24,10 @@ const UserSchema = new Schema({
     unique: true,
     lowercase: true
   },
-  password:{
+  password: {
     type: String,
-    required:true,
-    set: function(value) {
+    required: true,
+    set: function (value) {
       return require('bcrypt').hashSync(value, 12)
     }
   },

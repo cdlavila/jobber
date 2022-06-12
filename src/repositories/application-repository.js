@@ -4,8 +4,7 @@ const Repository = require('./repository')
 class ApplicationRepository extends Repository {
   constructor () {
     super()
-    this.model = ApplicationModel
-    this.name = 'Application'
+    this.Model = ApplicationModel
   }
 }
 

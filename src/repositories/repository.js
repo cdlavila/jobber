@@ -1,24 +1,24 @@
 class Repository {
   async create (data) {
-    const createdData = new this.model(data)
+    const createdData = new this.Model(data)
     await createdData.save()
     return createdData
   }
 
   async getAll (query = {}, population = null) {
-    return population ? this.model.find(query).populate(population) : this.model.find(query)
+    return population ? this.Model.find(query).populate(population) : this.Model.find(query)
   }
 
   async getById (id) {
-    return this.model.findById(id)
+    return this.Model.findById(id)
   }
 
   async getOne (query) {
-    return this.model.findOne(query)
+    return this.Model.findOne(query)
   }
 
   async update (id, data) {
-    const foundData = await this.model.findById(id)
+    const foundData = await this.Model.findById(id)
     const columns = Object.keys(data)
     columns.forEach(column => {
       foundData[column] = data[column]
@@ -28,7 +28,7 @@ class Repository {
   }
 
   async delete (id) {
-    return this.model.deleteOne({
+    return this.Model.deleteOne({
       _id: id
     })
   }

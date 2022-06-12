@@ -4,8 +4,7 @@ const Repository = require('./repository')
 class JobRepository extends Repository {
   constructor () {
     super()
-    this.model = JobModel
-    this.name = 'Job'
+    this.Model = JobModel
   }
 }
 

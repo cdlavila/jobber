@@ -23,7 +23,7 @@ class UserController {
       const user = await userRepository.getOne({ email: request?.payload?.email })
       if (!user) { return Response.error(h, StatusCode?.NOT_FOUND, 'User not found') }
       // Validate password
-      const isMatch = bcrypt.compareSync(req?.payload?.password, user?.password)
+      const isMatch = bcrypt.compareSync(request?.payload?.password, user?.password)
       if (!isMatch) {
         return Response.error(h, StatusCode?.NOT_AUTHORIZED, 'Email and password do not match')
       }
