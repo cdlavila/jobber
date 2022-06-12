@@ -18,6 +18,6 @@ const CompanySchema = new Schema({
   versionKey: false
 })
 
-const model = mongoose.model('Company', companySchema)
+const model = mongoose.model('Company', CompanySchema)
 
 module.exports = model

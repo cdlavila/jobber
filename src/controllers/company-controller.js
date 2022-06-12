@@ -5,8 +5,8 @@ const CompanyRepository = require('../repositories/company-repository')
 class CompanyController {
   static async create (request, h) {
     try {
-      console.log(request?.payload)
-      const company = await CompanyRepository.create(request?.payload)
+      const companyRepository = new CompanyRepository()
+      const company = await companyRepository.create(request?.payload)
       return Response.success(h, StatusCode?.CREATED, company, 'Company created successfully')
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
@@ -15,7 +15,8 @@ class CompanyController {
 
   static async getAll (request, h) {
     try {
-      const companies = await CompanyRepository.getAll()
+      const companyRepository = new CompanyRepository()
+      const companies = await companyRepository.getAll()
       return Response.success(h, StatusCode?.OK, companies, 'Companies list')
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
@@ -24,7 +25,8 @@ class CompanyController {
 
   static async getById (request, h) {
     try {
-      const company = await CompanyRepository.getById(request?.params?.id)
+      const companyRepository = new CompanyRepository()
+      const company = await companyRepository.getById(request?.params?.id)
       if (!company) { return Response.error(h, StatusCode?.NOT_FOUND, 'Company not found') }
       return Response.success(h, StatusCode?.OK, company, `Company of id ${request?.params?.id}`)
     } catch (error) {
@@ -34,8 +36,9 @@ class CompanyController {
 
   static async update (request, h) {
     try {
+      const companyRepository = new CompanyRepository()
       if (!request?.params?.id) { return Response.error(h, StatusCode?.BAD_REQUEST, 'Company id is required') }
-      const company = await CompanyRepository.update(request?.params?.id, request?.payload)
+      const company = await companyRepository.update(request?.params?.id, request?.payload)
       return Response.success(h, StatusCode?.OK, company, 'Company updated successfully')
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
@@ -44,8 +47,8 @@ class CompanyController {
 
   static async delete (request, h) {
     try {
-      if (!request?.params?.id) { return Response.error(h, StatusCode?.BAD_REQUEST, 'Company id is required') }
-      await CompanyRepository.delete(request?.params?.id)
+      const companyRepository = new CompanyRepository()
+      await companyRepository.delete(request?.params?.id)
       return Response.success(h, StatusCode?.NO_CONTENT)
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
