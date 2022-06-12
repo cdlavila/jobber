@@ -26,7 +26,7 @@ const adminAuthentication = {
             if (payload?.role !== 'Admin') {
               return Response.error(h, StatusCode?.PERMISSION_DENIED, 'User has not permissions for this action').takeover()
             }
-            return h.authenticated({ credentials: { token: token, user: payload } })
+            return h.authenticated({ credentials: { token, user: payload } })
           } catch (e) {
             return Response.error(h, StatusCode?.NOT_AUTHORIZED, e?.message?.replace('jwt', 'Token')).takeover()
           }
