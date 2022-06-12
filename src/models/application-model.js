@@ -12,7 +12,10 @@ const ApplicationSchema = new Schema({
     required: true,
     ref: 'Job'
   },
-  hired: Boolean
+  hired: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const model = mongoose.model('Application', ApplicationSchema)
