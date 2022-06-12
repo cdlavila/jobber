@@ -13,6 +13,16 @@ class JobController {
     }
   }
 
+  static async getAll (request, h) {
+    try {
+      const jobRepository = new JobRepository()
+      const jobs = await jobRepository.getAll({}, 'company')
+      return Response.success(h, StatusCode?.OK, jobs, 'Job list')
+    } catch (error) {
+      return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
+    }
+  }
+
   static async getAllByCompany (request, h) {
     try {
       const jobRepository = new JobRepository()
@@ -26,7 +36,7 @@ class JobController {
   static async getById (request, h) {
     try {
       const jobRepository = new JobRepository()
-      const job = await jobRepository.getById(request?.params?.id)
+      const job = await jobRepository.getById(request?.params?.id, 'company')
       if (!job) { return Response.error(h, StatusCode?.NOT_FOUND, 'Job not found') }
       return Response.success(h, StatusCode?.OK, job, `Job of id ${request?.params?.id}`)
     } catch (error) {

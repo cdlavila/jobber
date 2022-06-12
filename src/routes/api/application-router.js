@@ -10,6 +10,11 @@ module.exports = {
     },
     {
       method: 'GET',
+      path: '',
+      handler: ApplicationController.getAll
+    },
+    {
+      method: 'GET',
       path: '/by-job/{job}',
       handler: ApplicationController.getAllByJob
     },

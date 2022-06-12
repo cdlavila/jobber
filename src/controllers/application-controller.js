@@ -13,10 +13,20 @@ class ApplicationController {
     }
   }
 
+  static async getAll (request, h) {
+    try {
+      const applicationRepository = new ApplicationRepository()
+      const applications = await applicationRepository.getAll({}, ['job', 'candidate'])
+      return Response.success(h, StatusCode?.OK, applications, 'Applications list')
+    } catch (error) {
+      return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
+    }
+  }
+
   static async getAllByJob (request, h) {
     try {
       const applicationRepository = new ApplicationRepository()
-      const applications = await applicationRepository.getAll({ job: request?.params?.job })
+      const applications = await applicationRepository.getAll({ job: request?.params?.job }, 'candidate')
       return Response.success(h, StatusCode?.OK, applications, 'Applications list')
     } catch (error) {
       return Response.error(h, StatusCode?.SERVER_ERROR, error?.message)
@@ -26,7 +36,7 @@ class ApplicationController {
   static async getById (request, h) {
     try {
       const applicationRepository = new ApplicationRepository()
-      const application = await applicationRepository.getById(request?.params?.id)
+      const application = await applicationRepository.getById(request?.params?.id, ['job', 'candidate'])
       if (!application) { return Response.error(h, StatusCode?.NOT_FOUND, 'Application not found') }
       return Response.success(h, StatusCode?.OK, application, `Application of id ${request?.params?.id}`)
     } catch (error) {
