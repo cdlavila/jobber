@@ -4,7 +4,7 @@ const mongoosePlugin = require('./src/plugins/mongoose')
 const authenticationPlugin = require('./src/plugins/authentication')
 const adminAuthenticationPlugin = require('./src/plugins/admin-authentication')
 const candidateAuthenticationPlugin = require('./src/plugins/candidate-authentication')
-const routes = require('./src/routes/index')
+const routers = require('./src/routers/index')
 
 const init = async () => {
   const server = Hapi.server({
@@ -16,7 +16,7 @@ const init = async () => {
   await server.register(authenticationPlugin)
   await server.register(adminAuthenticationPlugin)
   await server.register(candidateAuthenticationPlugin)
-  server.route(routes)
+  server.route(routers)
   server.start()
   console.log('Server running on %s', server.info.uri)
 }
